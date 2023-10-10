@@ -146,6 +146,45 @@
     border-radius: 1rem;
 }
 
+dialog {
+    width: 70vw;
+    max-width: 600px; /* Defina um tamanho máximo para evitar que o modal fique muito grande */
+    margin: 0 auto;
+}
+
+.pokemon-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.info {
+    text-align: left;
+}
+
+.number, .name {
+    display: block;
+}
+
+.types {
+    text-align: left;
+}
+
+.types ol {
+    list-style: none;
+    padding: 0;
+}
+
+.types li {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.pokemon-photo img {
+    max-width: 80%; 
+    height: auto;
+}
+
 @media screen and (min-width: 380px) {
     .pokemons {
         grid-template-columns: 1fr 1fr;
