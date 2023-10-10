@@ -80,12 +80,12 @@ __Exemplo:__
 
 * Caso seja passado o valor 5 e 10: 
 
-![Exemplos com dados corretos](https://prnt.sc/zix5jw-vuhKH)
+![Exemplos com dados corretos](https://github.com/luccabugatti/Bootcamp-Santander/blob/main/Exercicios%20das%20aulas/DesafioControleFluxo/Exemplos/Exemplo1.png)
 
 * Caso seja passado 10 e 5 _(Número um não pode ser maior que o número dois)_
 
-![Exemplos com valor 1 maior que o valor 2](https://prnt.sc/UOWqKQM9oxfr)
+![Exemplos com valor 1 maior que o valor 2](https://github.com/luccabugatti/Bootcamp-Santander/blob/main/Exercicios%20das%20aulas/DesafioControleFluxo/Exemplos/Exemplo2.png)
 
 * Caso seja passado 10 e A _(A é um valor inválido)_
 
-![Exemplos com dado inválido](https://prnt.sc/r929VrRST-Ga)
+![Exemplos com dado inválido](https://github.com/luccabugatti/Bootcamp-Santander/blob/main/Exercicios%20das%20aulas/DesafioControleFluxo/Exemplos/Exemplo3.png)
