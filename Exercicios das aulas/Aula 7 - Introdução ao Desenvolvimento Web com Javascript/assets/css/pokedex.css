@@ -146,6 +146,17 @@
     border-radius: 1rem;
 }
 
+.abrirModalButton {
+    background-color: aliceblue;
+    padding: 0.25rem 0.5rem;
+    font-size: .25rem 0;
+    margin: .625rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: bold;
+    filter: brightness(1.1);
+}
+
 dialog {
     width: 70vw;
     max-width: 600px; /* Defina um tamanho máximo para evitar que o modal fique muito grande */
@@ -186,7 +197,9 @@ dialog {
 
 /* Se quiser estilizar cada item individualmente, pode usar as classes específicas */
 .abilities {
+    font-weight: bold;
     font-style: italic; /* Adiciona itálico para Abilities */
+    text-transform: capitalize;
   }
   
 .height,
