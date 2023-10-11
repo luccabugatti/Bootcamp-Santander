@@ -159,25 +159,60 @@ dialog {
 }
 
 .info {
-    text-align: left;
+    font-size: 1.5em;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinhe os elementos no início principal (cima) */
+    align-items: flex-start; /* Alinhe os elementos no início transversal (esquerda) */
 }
 
-.number, .name {
+.number {
+    font-size: 2em; /* Tamanho de fonte maior para o número */
+    align-self: flex-start !important; /* Posicione no início transversal (à esquerda) */
+  }
+  
+.name {
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+}
+
+.abilities,
+.height,
+.weight {
+  display: block; /* Coloca cada item em uma nova linha */
+  margin-top: 10px; /* Adiciona um espaço entre cada linha */
+}
+
+/* Se quiser estilizar cada item individualmente, pode usar as classes específicas */
+.abilities {
+    font-style: italic; /* Adiciona itálico para Abilities */
+  }
+  
+.height,
+.weight {
+    font-weight: bold;
     display: block;
+    margin-top: 5px; /* Torna Height e Weight em negrito */
 }
 
 .types {
+    color: white;
+    padding: 0;
+    font-size: .25rem 0;
+    margin: 0;
+    margin-top: 5px;
+    border-radius: 1rem;
+    filter: brightness(1.1);
     text-align: left;
+    text-transform: uppercase;
+    align-self: flex-end; /* Posicione no final transversal (à direita) */
 }
 
 .types ol {
-    list-style: none;
     padding: 0;
-}
-
-.types li {
-    display: block;
-    margin-bottom: 5px;
+    margin: 0;
+    list-style: none;
 }
 
 .pokemon-photo img {
