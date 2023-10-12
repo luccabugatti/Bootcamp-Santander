@@ -173,7 +173,9 @@
 
 dialog {
     width: 70vw;
-    max-width: 600px; /* Defina um tamanho máximo para evitar que o modal fique muito grande */
+    max-width: 600px;
+    height: 70vw;
+    max-height: 450px;
     padding: 20px;
     margin: 0 auto;
 }
@@ -197,6 +199,7 @@ dialog {
 .pokemon-details .info .number {
     font-size: 2em; /* Tamanho de fonte maior para o número */
     text-align: left;
+    margin-top: 5px;
   }
   
 .pokemon-details .info .name {
