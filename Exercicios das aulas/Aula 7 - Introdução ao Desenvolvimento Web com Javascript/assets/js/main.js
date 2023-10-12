@@ -26,20 +26,18 @@ function loadPokemonItens(offset, limit) {
                     
                     <dialog>
                         <div class="pokemon-details">
-                            <div class="types">
-                                <ol>${typesHTML}</ol>                
-                            </div>
                             <div class="info">
                                 <span class="number">#${pokemon.number}</span>
                                 <span class="name">${pokemon.name}</span>
                                 <span class="abilities">Abilities: ${pokemon.abilities.join(', ')}</span>
-                                <span class="height">Height: ${pokemon.height}</span><br>
+                                <span class="height">Height: ${pokemon.height}</span>
                                 <span class="weight">Weight: ${pokemon.weight}</span>
                             </div>
-                        </div>
-                        <div class="pokemon-photo">           
-                            <img src="${pokemon.photo}" alt="${pokemon.name}">
-                        </div>
+                            <div class="detail">
+                                <ol class="types">${typesHTML}</ol>
+                                <img src="${pokemon.photo}" alt="${pokemon.name}">
+                            </div>
+                        </div>                       
                     </dialog>
                     <button class="abrirModalButton">Ver Mais</button>
                 </li>
@@ -67,6 +65,7 @@ loadMoreButton.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
         const abrirModalButton = event.target.closest('.abrirModalButton');
+        const fecharModalButton = event.target.closest('.fecharModalButton');
 
         if (abrirModalButton) {
             const listItem = abrirModalButton.closest('.pokemon');
@@ -82,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error('Error fetching Pokemon data:', error);
                 });
         }
+
+        if (fecharModalButton) {
+            const modal = fecharModalButton.closest('dialog');
+            modal.close();
+        }
     });
 });
 
@@ -93,19 +97,18 @@ function fillModalContent(modal, pokemon) {
 
         modal.innerHTML = `
             <div class="pokemon-details">
-                <div class="types">
-                    <ol>${types.map(type => `<li class="type ${type}">${type}</li>`).join('')}</ol>
-                </div>
                 <div class="info">
                     <span class="number"># ${removePrefix(number, "#")}</span>
                     <span class="name">${name}</span>
                     <span class="abilities">Abilities: ${removePrefix(abilities.join(', '), "Abilities:")}</span>
-                    <span class="height">Height: ${removePrefix(height, "Height: ")}</span><br>
+                    <span class="height">Height: ${removePrefix(height, "Height: ")}</span>
                     <span class="weight">Weight: ${removePrefix(weight, "Weight: ")}</span>
                 </div>
-            </div>
-            <div class="pokemon-photo">
-                <img src="${photo}" alt="${name}">
+                <div class="detail">
+                    <ol class="types">${types.map(type => `<li class="type ${type}">${type}</li>`).join('')}</ol>
+                    <img src="${photo}" alt="${name}">
+                </div>
+                <button class="fecharModalButton">Fechar</button>
             </div>
         `;
         modal.classList.add(types[0].toLowerCase());
