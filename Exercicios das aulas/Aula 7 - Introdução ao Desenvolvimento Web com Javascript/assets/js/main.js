@@ -39,7 +39,7 @@ function loadPokemonItens(offset, limit) {
                             </div>
                         </div>                       
                     </dialog>
-                    <button class="abrirModalButton">Ver Mais</button>
+                    <button class="abrirModalButton">Detalhes</button>
                 </li>
             `;
         }).join('');
