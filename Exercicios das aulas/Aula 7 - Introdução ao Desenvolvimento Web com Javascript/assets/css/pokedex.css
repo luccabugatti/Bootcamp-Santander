@@ -98,6 +98,8 @@
     color: black;
     text-align: right;
     opacity: 0.3;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 .pokemon .name {
@@ -192,12 +194,12 @@ dialog {
     line-height: 1.2;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinhe os elementos no início principal (cima) */
+    justify-content: flex-start; 
     align-items: flex-start;
 }
 
 .pokemon-details .info .number {
-    font-size: 2em; /* Tamanho de fonte maior para o número */
+    font-size: 2em; 
     text-align: left;
     margin-top: 5px;
   }
@@ -210,7 +212,7 @@ dialog {
 
 .pokemon-details .info .abilities {
     font-weight: bold;
-    font-style: italic; /* Adiciona itálico para Abilities */
+    font-style: italic; 
     text-transform: capitalize;
 }
   
