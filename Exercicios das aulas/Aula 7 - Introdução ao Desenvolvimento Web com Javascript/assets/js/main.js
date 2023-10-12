@@ -10,41 +10,42 @@ const maxRecords = 151
 
 function loadPokemonItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
-        console.log(pokemons)   
-        pokemonList.innerHTML += pokemons.map((pokemon) => `
-            <li class="pokemon ${pokemon.type}">
-            <span class="number">#${pokemon.number}</span>
-            <span class="name">${pokemon.name}</span>
-            
-            <div class="detail">
-                <ol class="types">
-                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
-                </ol>
-                    <img src=${pokemon.photo} alt=${pokemon.name}>
-            </div>
-            <dialog>
-                <div class="pokemon-details">
-                    <div class="types">
-                        <ol>
-                        ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
-                        </ol>                
+        console.log(pokemons);
+
+        pokemonList.innerHTML += pokemons.map((pokemon) => {
+            const typesHTML = pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('');
+            return `
+                <li class="pokemon ${pokemon.type}">
+                    <span class="number">#${pokemon.number}</span>
+                    <span class="name">${pokemon.name}</span>
+                    
+                    <div class="detail">
+                        <ol class="types">${typesHTML}</ol>
+                        <img src="${pokemon.photo}" alt="${pokemon.name}">
                     </div>
-                    <div class="info">
-                        <span class="number">#${pokemon.number}</span>
-                        <span class="name">${pokemon.name}</span>
-                        <span class="abilities">Abilities: ${pokemon.abilities.join(', ')}</span>
-                        <span class="height">Height: ${pokemon.height}</span><br>
-                        <span class="weight">Weight: ${pokemon.weight}</span>
-                    </div>
-                </div>
-                <div class="pokemon-photo">           
-                    <img src=${pokemon.photo} alt=${pokemon.name}>
-                </div>
-            </dialog>
-            <button class="abrirModalButton">Ver Mais</button>
-            </li>
-        `).join('') 
-    })  
+                    
+                    <dialog>
+                        <div class="pokemon-details">
+                            <div class="types">
+                                <ol>${typesHTML}</ol>                
+                            </div>
+                            <div class="info">
+                                <span class="number">#${pokemon.number}</span>
+                                <span class="name">${pokemon.name}</span>
+                                <span class="abilities">Abilities: ${pokemon.abilities.join(', ')}</span>
+                                <span class="height">Height: ${pokemon.height}</span><br>
+                                <span class="weight">Weight: ${pokemon.weight}</span>
+                            </div>
+                        </div>
+                        <div class="pokemon-photo">           
+                            <img src="${pokemon.photo}" alt="${pokemon.name}">
+                        </div>
+                    </dialog>
+                    <button class="abrirModalButton">Ver Mais</button>
+                </li>
+            `;
+        }).join('');
+    });
 }
 
 loadPokemonItens(offset, limit)
@@ -69,45 +70,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (abrirModalButton) {
             const listItem = abrirModalButton.closest('.pokemon');
-
             const pokemon = getPokemonDataFromListItem(listItem);
-            // Move a chamada de fillModalContent para dentro da chamada assíncrona da API
-            pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
-                const modal = listItem.querySelector('dialog');
-                fillModalContent(modal, pokemon);
-                modal.showModal();
-            });
+
+            pokeApi.getPokemons(offset, limit)
+                .then((pokemons = []) => {
+                    const modal = listItem.querySelector('dialog');
+                    fillModalContent(modal, pokemon);
+                    modal.showModal();
+                })
+                .catch(error => {
+                    console.error('Error fetching Pokemon data:', error);
+                });
         }
     });
 });
 
 function fillModalContent(modal, pokemon) {
+    const removePrefix = (str, prefix) => str.startsWith(prefix) ? str.slice(prefix.length) : str;
+
     if (modal && pokemon) {
+        const { types, number, name, abilities, height, weight, photo } = pokemon;
 
-        const removePrefix = (str, prefix) => str.startsWith(prefix) ? str.slice(prefix.length) : str;
-
-        console.log(pokemon);
         modal.innerHTML = `
-        <div class="pokemon-details">
-            <div class="types">
-                <ol>
-                ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
-                </ol>                
+            <div class="pokemon-details">
+                <div class="types">
+                    <ol>${types.map(type => `<li class="type ${type}">${type}</li>`).join('')}</ol>
+                </div>
+                <div class="info">
+                    <span class="number"># ${removePrefix(number, "#")}</span>
+                    <span class="name">${name}</span>
+                    <span class="abilities">Abilities: ${removePrefix(abilities.join(', '), "Abilities:")}</span>
+                    <span class="height">Height: ${removePrefix(height, "Height: ")}</span><br>
+                    <span class="weight">Weight: ${removePrefix(weight, "Weight: ")}</span>
+                </div>
             </div>
-            <div class="info">
-                <span class="number"># ${removePrefix(pokemon.number, "#")}</span>
-                <span class="name">${pokemon.name}</span>
-                <span class="abilities">Abilities: ${removePrefix(pokemon.abilities.join(', '), "Abilities:")}</span>
-                <span class="height">Height: ${removePrefix(pokemon.height, "Height: ")}</span><br>
-                <span class="weight">Weight: ${removePrefix(pokemon.weight, "Weight: ")}</span>
+            <div class="pokemon-photo">
+                <img src="${photo}" alt="${name}">
             </div>
-        </div>
-        <div class="pokemon-photo">           
-            <img src=${pokemon.photo} alt=${pokemon.name}>
-        </div>
         `;
-
-        modal.classList.add(pokemon.types[0].toLowerCase());
+        modal.classList.add(types[0].toLowerCase());
     }
 }
 

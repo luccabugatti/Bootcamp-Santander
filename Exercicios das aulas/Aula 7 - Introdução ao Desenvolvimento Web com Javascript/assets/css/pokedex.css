@@ -6,6 +6,14 @@
     margin: 0;
 }
 
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    font-family: 'Press Start 2P', cursive;
+    color: #5e4c41;
+}
+
 .normal {
     background-color: #a6a877;
 }
@@ -159,7 +167,8 @@
 
 dialog {
     width: 70vw;
-    max-width: 600px; /* Defina um tamanho máximo para evitar que o modal fique muito grande */
+    max-width: 800px; /* Defina um tamanho máximo para evitar que o modal fique muito grande */
+    padding: 20px;
     margin: 0 auto;
 }
 
