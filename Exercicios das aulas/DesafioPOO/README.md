@@ -1,6 +1,4 @@
-
-
-# Desafio - Pokedex
+# Desafio - POO
 
 __Enunciado:__
 
