@@ -20,7 +20,7 @@ Fui assistindo as aulas e fazendo a pokedex junto com o professor. A página ini
 
 Quando clicar em detalhes do pokemon é aberto um pop up que exibe mais informações do pokemo, como habilidades, altura e largura alem das informações principais como nome e tipo. 
 
-* Foi usado um **modal** para fase essa tela
+* Foi usado um **modal** para fazer essa tela
 
 ![Tela de detalhes do Pokemon](https://github.com/luccabugatti/Bootcamp-Santander/blob/main/Exercicios%20das%20aulas/DesafioPokedex/assets/png/Modal.png)
 
